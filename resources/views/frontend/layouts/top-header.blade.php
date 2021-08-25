@@ -5,13 +5,13 @@
         <div class="header_top">
           <div class="header_top_left">
             <ul class="top_nav">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="pages/contact.html">Contact</a></li>
+              <li><a href="{{route('home')}}">Home</a></li>
+              <li><a href="{{route('about')}}">About</a></li>
+              <li><a href="{{route('contact')}}">Contact</a></li>
             </ul>
           </div>
           <div class="header_top_right">
-            <p>Friday, December 05, 2045</p>
+            <p>{{date('D,  M-d,  Y')}}</p>
           </div>
         </div>
       </div>
