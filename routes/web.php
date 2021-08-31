@@ -23,6 +23,7 @@ Route::group(['namespace'=>'Backend','prefix'=>'backend','middleware'=>'auth'],f
     Route::group(['prefix'=>'users'],function(){
         Route::any('/',[UserController::class,'index'])->name('users');
         Route::any('/create-user',[UserController::class,'insert'])->name('user-create');
+        Route::any('/delete-user/{criteria?}',[UserController::class,'delete'])->name('delete-user');
 
     });
 

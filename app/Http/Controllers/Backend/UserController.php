@@ -54,4 +54,23 @@ class UserController extends Controller
 
         }
     }
+    //for deleting image files
+    public function deleteFiles($id){
+        $user=User::findOrFail($id);
+        $userImage=public_path('uploads/users/'.$user->image);
+        if(file_exists($userImage) && is_file($userImage)){
+            unlink($userImage);
+            return true;
+        }
+        return true;
+    }
+    public function delete(Request $request){
+        $id=$request->criteria;
+        $userObj=User::findOrFail($id);
+        if($this->deleteFiles($id)&&$userObj->delete()){
+            return redirect()->back()->with('success','User deleted successfully');
+        }else{
+            return redirect()->back()->with('error','cannot  delete User');
+        }
+    }
 }

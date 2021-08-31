@@ -55,8 +55,8 @@
                                             </td>
                                             <td>{{$user->status}}</td>
                                             <td>
-                                                <a href="" class="btn-sm btn-success"><i class="fa fa-edit"></i></a>
-                                                <a href="" class="btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                                <a href="" class="btn-sm btn-success">Edit</i></a>
+                                                <a href="{{route('delete-user').'/'.$user->id}}" class="btn-sm btn-danger">Delete</i></a>
                                             </td>
                                         </tr>
                                         @endforeach
