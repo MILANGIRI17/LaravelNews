@@ -30,10 +30,11 @@
                         <a><i class="fa fa-dashboard"></i>Dashboard</a>
                     </li>
                     <li>
-                        <a><i class="fa fa-users"></i> Admin Users <span class="fa fa-chevron-down"></span></a>
+                        <a><i class="fa fa-users"></i>Users <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="">Add User</a></li>
-                            <li><a href="">Show Users</a></li>
+                            <li><a href="{{route('users')}}">Show Users</a></li>
+                            <li><a href="{{route('user-create')}}">Add User</a></li>
+                            
                         </ul>
                     </li>
                     
