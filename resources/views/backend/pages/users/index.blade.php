@@ -54,11 +54,31 @@
                                             <td>
                                                 <img src="{{url('uploads/users/'.$user->image)}}" width="40" alt="">
                                             </td>
-                                            <td>{{$user->status}}</td>
-                                            <td>{{$user->user_type}}</td>
                                             <td>
-                                                <a href="{{route('edit-user').'/'.$user->id}}" class="btn-sm btn-success">Edit</i></a>
-                                                <a href="{{route('delete-user').'/'.$user->id}}" class="btn-sm btn-danger">Delete</i></a>
+                                                <form action="{{route('update-user-status')}}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="criteria" value="{{$user->id }}">
+                                                @if($user->status==1)
+                                                <button name="active" class='btn btn-primary'><i class="fa fa-check"></i></button>
+                                                @else
+                                                <button name="inactive" class='btn btn-danger'><i class="fa fa-times"></i></button>
+                                                @endif
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form action="{{route('update-user-type')}}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="criteria" value="{{$user->id }}">
+                                                @if($user->user_type=='admin')
+                                                <button name="admin" class='btn btn-success'><i class="fa fa-users"></i></button>
+                                                @else
+                                                <button name="user" class='btn btn-warning'><i class="fa fa-user"></i></button>
+                                                @endif
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <a href="{{route('edit-user').'/'.$user->id}}" class="btn-sm btn-success"><i class="fa fa-edit"></i></i></a>
+                                                <a href="{{route('delete-user').'/'.$user->id}}" class="btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach

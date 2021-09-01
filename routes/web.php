@@ -26,8 +26,11 @@ Route::group(['namespace'=>'Backend','prefix'=>'backend','middleware'=>'auth'],f
         Route::any('/delete-user/{criteria?}',[UserController::class,'delete'])->name('delete-user');
         Route::any('/edit-user/{criteria?}',[UserController::class,'edit'])->name('edit-user');
         Route::any('/edit-user-action',[UserController::class,'editAction'])->name('edit-user-action');
+        Route::any('/update-user-status',[UserController::class,'updateUserStatus'])->name('update-user-status');
+        Route::any('/update-user-type',[UserController::class,'updateUserType'])->name('update-user-type');
 
-    });
+
+    }); 
 
     Route::any('/logout',[UserLoginController::class,'logout'])->name('logout');
 });

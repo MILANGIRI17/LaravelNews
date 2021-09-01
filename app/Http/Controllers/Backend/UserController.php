@@ -125,4 +125,58 @@ class UserController extends Controller
             }
         }
     }
+
+
+    //update user status
+    public function updateUserStatus(Request $request)
+    {
+        
+        if($request->isMethod('get')){
+            return redirect()->back();
+        }
+        if($request->isMethod('post')){
+        $id=$request->criteria;
+        $obj=User::findOrFail($id);
+            if(isset($_POST['active'])){
+                $obj->status=0;
+                $msgType='error';
+                $msg="User is Offline";
+            } 
+            if(isset($_POST['inactive'])){
+                $obj->status=1;
+                $msgType='success';
+                $msg="User is Online";
+            }
+
+            if($obj->update()){
+                return redirect()->back()->with($msgType,$msg);
+            }
+        }
+    }
+
+    public function updateUserType(Request $request)
+    {
+        
+        if($request->isMethod('get')){
+            return redirect()->back();
+        }
+        if($request->isMethod('post')){
+        $id=$request->criteria;
+        $obj=User::findOrFail($id);
+            if(isset($_POST['admin'])){
+                $obj->user_type='user';
+                $msgType='error';
+                $msg="Changed to user";
+            } 
+            if(isset($_POST['user'])){
+                $obj->user_type='admin';
+                $msgType='success';
+                $msg="Changed to admin";
+            }
+
+            if($obj->update()){
+                return redirect()->back()->with($msgType,$msg);
+            }
+        }
+    }
 }
