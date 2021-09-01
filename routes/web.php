@@ -24,6 +24,8 @@ Route::group(['namespace'=>'Backend','prefix'=>'backend','middleware'=>'auth'],f
         Route::any('/',[UserController::class,'index'])->name('users');
         Route::any('/create-user',[UserController::class,'insert'])->name('user-create');
         Route::any('/delete-user/{criteria?}',[UserController::class,'delete'])->name('delete-user');
+        Route::any('/edit-user/{criteria?}',[UserController::class,'edit'])->name('edit-user');
+        Route::any('/edit-user-action',[UserController::class,'editAction'])->name('edit-user-action');
 
     });
 

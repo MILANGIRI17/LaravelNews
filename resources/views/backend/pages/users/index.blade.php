@@ -40,6 +40,7 @@
                                                 <th>Gender</th>
                                                 <th>Image</th>
                                                 <th>Status</th>
+                                                <th>User Type</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -49,13 +50,14 @@
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->username}}</td>
                                             <td>{{$user->email}}</td>
-                                            <td>{{$user->gender}}</td>
+                                            <td>{{ucfirst($user->gender)}}</td>
                                             <td>
                                                 <img src="{{url('uploads/users/'.$user->image)}}" width="40" alt="">
                                             </td>
                                             <td>{{$user->status}}</td>
+                                            <td>{{$user->user_type}}</td>
                                             <td>
-                                                <a href="" class="btn-sm btn-success">Edit</i></a>
+                                                <a href="{{route('edit-user').'/'.$user->id}}" class="btn-sm btn-success">Edit</i></a>
                                                 <a href="{{route('delete-user').'/'.$user->id}}" class="btn-sm btn-danger">Delete</i></a>
                                             </td>
                                         </tr>

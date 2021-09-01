@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
+;
 
 class UserController extends Controller
 {
@@ -71,6 +73,56 @@ class UserController extends Controller
             return redirect()->back()->with('success','User deleted successfully');
         }else{
             return redirect()->back()->with('error','cannot  delete User');
+        }
+    }
+
+
+    //edit
+    public function edit(Request $request){
+        $id=$request->criteria;
+        $userData=User::findOrFail($id);
+        return view('backend.pages.users.edit',compact('userData'));
+    }
+    public function editAction(Request $request){
+        if($request->isMethod('get')){
+            return redirect()->back();
+        }
+        if($request->isMethod('post')){
+            $id=$request->criteria; 
+            $this->validate($request,[
+                'name'=>'required|min:3|max:50',
+                'username'=>'required|min:3|max:50|',[
+                    Rule::unique('users','username')->ignore($id)
+                ],
+                'email'=>'required|email|',[
+                    Rule::unique('users','email')->ignore($id)
+                ],
+                'gender'=>'required',
+                'user_type'=>'required',
+                'image'=>'mimes:jpg,png,jpeg,gif'
+            ]);
+            $data['name']=$request->name;
+            $data['username']=$request->username;
+            $data['email']=$request->email;
+            $data['gender']=$request->gender;
+            $data['user_type']=$request->user_type;
+           
+            if($request->hasFile('image')){
+                $file= $request->file('image');
+                $ext=$file->getClientOriginalExtension();
+                $imageName=md5(microtime()).'.'.$ext;
+                $uploadPath=public_path('uploads/users');
+                 
+                if($this->deleteFiles($id) && $file->move($uploadPath,$imageName)){
+                    $data['image']=$imageName;
+                }
+                
+            }
+            if(User::findOrFail($id)->update($data)){
+                return redirect()->route('users')->with('success','Data updated successfully');  
+            }else{
+                return redirect()->back()->with('error','There was some problem');
+            }
         }
     }
 }
