@@ -77,8 +77,8 @@
                                                 </form>
                                             </td>
                                             <td>
-                                                <a href="{{route('edit-user').'/'.$user->id}}" class="btn-sm btn-success"><i class="fa fa-edit"></i></i></a>
-                                                <a href="{{route('delete-user').'/'.$user->id}}" class="btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                                <a href="{{route('edit-user').'/'.$user->id}}" class="btn btn-success"><i class="fa fa-edit"></i></i></a>
+                                                <a href="{{route('delete-user').'/'.$user->id}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach

@@ -15,6 +15,8 @@ Route::group(['namespace'=>'Frontend'],function(){
 Route::group(['namespace'=>'Backend'],function(){
     Route::get('/login',[UserLoginController::class,'index'])->name('login');
     Route::post('/login',[UserLoginController::class,'login']);
+    Route::any('/password-reset',[UserLoginController::class,'passwordReset'])->name('password-reset');
+    Route::any('/password-reset-link/{_token?}/{email?}',[UserLoginController::class,'passwordResetLink'])->name('password-reset-link');
 });
 
 Route::group(['namespace'=>'Backend','prefix'=>'backend','middleware'=>'auth'],function(){
