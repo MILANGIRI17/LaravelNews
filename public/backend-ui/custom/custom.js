@@ -19,5 +19,7 @@ $(document).ready(function(){
         $('.alert').hide('slow')
     },2000);
 
+    CKEDITOR.replace('meta_description');
+    CKEDITOR.replace('summary');
     CKEDITOR.replace('description');
 });

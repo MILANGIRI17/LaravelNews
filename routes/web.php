@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\UserLoginController;
 use App\Http\Controllers\Frontend\ApplicationController;
+use App\Http\Controllers\Backend\NewsController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace'=>'Frontend'],function(){
@@ -30,9 +32,14 @@ Route::group(['namespace'=>'Backend','prefix'=>'backend','middleware'=>'auth'],f
         Route::any('/edit-user-action',[UserController::class,'editAction'])->name('edit-user-action');
         Route::any('/update-user-status',[UserController::class,'updateUserStatus'])->name('update-user-status');
         Route::any('/update-user-type',[UserController::class,'updateUserType'])->name('update-user-type');
-
-
     }); 
+
+    //By creating category with resource we can make route like this
+    Route::resource('admin-category','\App\Http\Controllers\Backend\CategoryController');
+    Route::any('/update-Category-status',[CategoryController::class,'updateCategoryStatus'])->name('update-category-status');
+
+    //For News we create route resource named 'admin-news'
+    Route::resource('admin-news','\App\Http\Controllers\Backend\NewsController');
 
     Route::any('/logout',[UserLoginController::class,'logout'])->name('logout');
 });

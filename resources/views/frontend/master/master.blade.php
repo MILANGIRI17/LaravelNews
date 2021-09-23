@@ -1,10 +1,12 @@
 @include('frontend.layouts.header')
 @include('frontend.layouts.top-header')
 @include('frontend.layouts.menu')
+@include('frontend.layouts.latest-news')
 @include('frontend.layouts.footer')
 
 @yield('header')
 @yield('top-header')
 @yield('menu')
+@yield('latest-news')
 @yield('content')
 @yield('footer')

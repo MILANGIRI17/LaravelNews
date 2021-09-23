@@ -27,14 +27,20 @@
                 <h3>General</h3>
                 <ul class="nav side-menu">
                     <li>
-                        <a><i class="fa fa-dashboard"></i>Dashboard</a>
+                        <a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i>Dashboard</a>
                     </li>
                     <li>
                         <a><i class="fa fa-users"></i>Users <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{route('users')}}">Show Users</a></li>
                             <li><a href="{{route('user-create')}}">Add User</a></li>
-                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a><i class="fa fa-book"></i>Category <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{route('admin-category.index')}}">Show Category</a></li>
+                            <li><a href="{{route('admin-category.create')}}">Add Category</a></li>
                         </ul>
                     </li>
                     
